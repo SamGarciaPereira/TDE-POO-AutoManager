@@ -1,9 +1,20 @@
-### IntelliJ IDEA ###
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
-### Eclipse ###
+target/
+*.log
+
+# ===================================================================
+# Ficheiros de IDE (IntelliJ IDEA)
+# Ignora as configurações locais do seu editor
+
+# Ficheiros específicos do utilizador
+.idea/
+workspace.xml
+
+# Ficheiro do módulo (específico da sua máquina)
+*.iml
+
+# ===================================================================
+# Ficheiros de outros IDEs (copiados do seu ficheiro antigo)
 .apt_generated
 .classpath
 .factorypath
@@ -14,16 +25,14 @@ out/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
-
-### NetBeans ###
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-
-### VS Code ###
 .vscode/
 
-### Mac OS ###
+# ===================================================================
+# Ficheiros de Sistema Operacional
 .DS_Store
+Thumbs.db
