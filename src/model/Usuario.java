@@ -4,6 +4,7 @@ public class Usuario {
     private int idUsuario;
     private String nome;
     private String email;
+    private String senha;
 
     public Usuario(int idUsuario, String nome, String email) {
         this.idUsuario = idUsuario;
@@ -11,9 +12,14 @@ public class Usuario {
         this.email = email;
     }
 
-    public Usuario(String nome, String email) {
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
+    }
+
+    public Usuario(String senha) {
+        this.senha = senha;
     }
 
     public Usuario(int idUsuario) {
@@ -42,5 +48,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

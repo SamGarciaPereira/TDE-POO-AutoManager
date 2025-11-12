@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jbcrypt-0.4-javadoc">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/frontend/WEB-INF/lib/jbcrypt-0.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
