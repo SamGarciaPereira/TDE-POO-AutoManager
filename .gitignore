@@ -1,0 +1,38 @@
+
+target/
+*.log
+
+# ===================================================================
+# Ficheiros de IDE (IntelliJ IDEA)
+# Ignora as configurações locais do seu editor
+
+# Ficheiros específicos do utilizador
+.idea/
+workspace.xml
+
+# Ficheiro do módulo (específico da sua máquina)
+*.iml
+
+# ===================================================================
+# Ficheiros de outros IDEs (copiados do seu ficheiro antigo)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+.vscode/
+
+# ===================================================================
+# Ficheiros de Sistema Operacional
+.DS_Store
+Thumbs.db
