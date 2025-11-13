@@ -16,7 +16,9 @@ btnAbrirModal.addEventListener("click", () => {
 });
 
 btnFecharModal.addEventListener("click", () => modal.style.display = "none");
-window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+});
 
 async function atualizarListaVeiculos() {
     try {
@@ -28,23 +30,23 @@ async function atualizarListaVeiculos() {
         veiculos.forEach(v => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-            <td>${v.idVeiculo}</td>
-            <td>${v.placa}</td>
-            <td>${v.marca}</td>
-            <td>${v.modelo}</td>
-            <td>${v.ano}</td>
-            <td>
-                <button class="btn btn-editar" 
-                    data-id="${v.idVeiculo}" 
-                    data-placa="${v.placa}" 
-                    data-marca="${v.marca}" 
-                    data-modelo="${v.modelo}" 
-                    data-ano="${v.ano}">
-                    Editar
-                </button>
-                <button class="btn btn-excluir" data-id="${v.idVeiculo}">Excluir</button>
-            </td>
-        `;
+                <td>${v.idVeiculo}</td>
+                <td>${v.placa}</td>
+                <td>${v.marca}</td>
+                <td>${v.modelo}</td>
+                <td>${v.ano}</td>
+                <td>
+                    <button class="btn btn-editar" 
+                        data-id="${v.idVeiculo}" 
+                        data-placa="${v.placa}" 
+                        data-marca="${v.marca}" 
+                        data-modelo="${v.modelo}" 
+                        data-ano="${v.ano}">
+                        Editar
+                    </button>
+                    <button class="btn btn-excluir" data-id="${v.idVeiculo}">Excluir</button>
+                </td>
+            `;
             tbody.appendChild(tr);
         });
 
@@ -84,19 +86,25 @@ formVeiculo.addEventListener("submit", async (event) => {
     msgErro.textContent = "";
     msgSucesso.textContent = "";
 
+    let method = "POST";
+    if (editandoVeiculoId) {
+        method = "PUT";
+    }
+
+    let bodyData = {
+        placa: placa,
+        marca: marca,
+        modelo: modelo,
+        ano: ano
+    };
+
+    if (editandoVeiculoId) {
+        bodyData.idVeiculo = Number(editandoVeiculoId);
+    }
+
     try {
-        const method = editandoVeiculoId ? "PUT" : "POST";
-
-        const bodyData = {
-            idVeiculo: editandoVeiculoId ? Number(editandoVeiculoId) : undefined,
-            placa,
-            marca,
-            modelo,
-            ano
-        };
-
         const response = await fetch("/veiculos", {
-            method,
+            method: method,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(bodyData)
         });
@@ -104,7 +112,11 @@ formVeiculo.addEventListener("submit", async (event) => {
         const resultado = await response.json();
 
         if (response.ok) {
-            msgSucesso.textContent = editandoVeiculoId ? "Veículo atualizado!" : "Veículo cadastrado!";
+            if (editandoVeiculoId) {
+                msgSucesso.textContent = "Veículo atualizado!";
+            } else {
+                msgSucesso.textContent = "Veículo cadastrado!";
+            }
             formVeiculo.reset();
             atualizarListaVeiculos();
 
