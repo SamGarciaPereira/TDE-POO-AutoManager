@@ -19,7 +19,7 @@ public class ManutencaoDAO {
 
     //listar manutenções
     public ArrayList<Manutencao> listarManutencoes(){
-        String query = "SELECT m.*, v.placa, v.marca, v.modelo, v.ano, v.nome_cliente " +
+        String query = "SELECT m.*, v.placa, v.marca, v.modelo, v.ano " +
                 "FROM manutencao m " +
                 "JOIN veiculo v ON m.id_veiculo_fk = v.id_veiculo " +
                 "ORDER BY m.data_entrada DESC";
@@ -38,7 +38,7 @@ public class ManutencaoDAO {
                 );
                 Manutencao m = new Manutencao(
                         rs.getInt("id_manutencao"),
-                        rs.getString("descricao_servico"),
+                        rs.getString("descricao"),
                         rs.getString("data_entrada"),
                         rs.getString("data_saida"),
                         rs.getString("status_servico"),
@@ -55,7 +55,7 @@ public class ManutencaoDAO {
 
     //criar nova manutenção
     public boolean criarManutencao(Manutencao m) {
-        String query = "INSERT INTO manutencao (descricao_servico, status_servico, id_veiculo_fk) " +
+        String query = "INSERT INTO manutencao (descricao, status_servico, id_veiculo_fk) " +
                 "VALUES (?, ?, ?)";
         try {
             ps = this.con.prepareStatement(query);
@@ -73,7 +73,7 @@ public class ManutencaoDAO {
     //atualizar manutenção
     public boolean atualizarManutencao(Manutencao m) {
         String query = "UPDATE manutencao SET " +
-                "descricao_servico = ?, " +
+                "descricao = ?, " +
                 "status_servico = ?, " +
                 "data_saida = CASE " +
                 "    WHEN ? = 'Concluído' AND data_saida IS NULL THEN NOW() " +
