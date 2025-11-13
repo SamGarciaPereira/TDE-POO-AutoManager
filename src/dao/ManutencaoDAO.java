@@ -34,8 +34,7 @@ public class ManutencaoDAO {
                         rs.getString("placa"),
                         rs.getString("marca"),
                         rs.getString("modelo"),
-                        rs.getInt("ano"),
-                        rs.getString("nome_cliente")
+                        rs.getInt("ano")
                 );
                 Manutencao m = new Manutencao(
                         rs.getInt("id_manutencao"),

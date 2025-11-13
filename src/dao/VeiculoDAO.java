@@ -18,14 +18,13 @@ public class VeiculoDAO {
 
     //criar veículo
     public boolean criarVeiculo(Veiculo v){
-        String query = "INSERT INTO veiculo(placa, marca, modelo, ano, nome_cliente) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO veiculo(placa, marca, modelo, ano) VALUES (?, ?, ?, ?)";
         try{
             ps = this.con.prepareStatement(query);
             ps.setString(1, v.getPlaca());
             ps.setString(2, v.getMarca());
             ps.setString(3, v.getModelo());
             ps.setInt(4, v.getAno());
-            ps.setString(5, v.getNomeCliente());
             ps.execute();
             return true;
         }catch(SQLException ex){
@@ -36,7 +35,7 @@ public class VeiculoDAO {
 
     //listar veículos
     public ArrayList<Veiculo> listarVeiculos() {
-        String query = "SELECT id_veiculo, placa, marca, modelo, ano, nome_cliente FROM veiculo";
+        String query = "SELECT id_veiculo, placa, marca, modelo, ano FROM veiculo";
         ArrayList<Veiculo> lista = new ArrayList<>();
         try {
             ps = this.con.prepareStatement(query);
@@ -48,8 +47,7 @@ public class VeiculoDAO {
                         rs.getString("placa"),
                         rs.getString("marca"),
                         rs.getString("modelo"),
-                        rs.getInt("ano"),
-                        rs.getString("nomeCliente")
+                        rs.getInt("ano")
                 );
                 lista.add(v);
             }

@@ -16,10 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const logoutButton = document.getElementById("btn-logout");
         if (logoutButton) {
           logoutButton.addEventListener("click", () => {
-            // (Aqui você faria o fetch para o seu LogoutServlet)
             alert("Função de Logout a ser implementada!");
-            // Ex: fetch('../logout', { method: 'POST' });
-            window.location.href = "login.html"; // Redireciona para o login
+            window.location.href = "login.html";
           });
         }
       })

@@ -6,15 +6,13 @@ public class Veiculo {
     private String marca;
     private String modelo;
     private int ano;
-    private String nomeCliente;
 
-    public Veiculo(int idVeiculo, String placa, String marca, String modelo, int ano, String nomeCliente) {
+    public Veiculo(int idVeiculo, String placa, String marca, String modelo, int ano) {
         this.idVeiculo = idVeiculo;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
-        this.nomeCliente = nomeCliente;
     }
 
     public int getIdVeiculo() { return idVeiculo; }
@@ -41,13 +39,5 @@ public class Veiculo {
 
     public void setAno(int ano) {
         this.ano = ano;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
     }
 }
