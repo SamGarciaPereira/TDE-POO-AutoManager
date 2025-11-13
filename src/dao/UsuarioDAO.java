@@ -88,17 +88,18 @@ public class UsuarioDAO {
     }
 
     // ---Atualizar Usuário (retorna boolean) ---
-    public boolean atualizarUsuario(Usuario u){
-        String query = "UPDATE usuario SET nome = ?, email = ? WHERE id_usuario = ?";
-        try{
+    public boolean atualizarUsuario(Usuario u) {
+        String query = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id_usuario = ?";
+        try {
             ps = this.con.prepareStatement(query);
+            String hashSenha = org.mindrot.jbcrypt.BCrypt.hashpw(u.getSenha(), org.mindrot.jbcrypt.BCrypt.gensalt());
             ps.setString(1, u.getNome());
             ps.setString(2, u.getEmail());
-            ps.setInt(3, u.getIdUsuario());
+            ps.setString(3, hashSenha);
+            ps.setInt(4, u.getIdUsuario());
             ps.executeUpdate();
-            return true; //
-        }
-        catch(SQLException ex){
+            return true;
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
