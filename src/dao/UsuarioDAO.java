@@ -18,7 +18,7 @@ public class UsuarioDAO {
         this.con = ConexaoMySQL.getConexaoMySQL().getConnection();
     }
 
-    // ---Método de Login ---
+    //fazer login
     public Usuario fazerLogin(String email, String senhaDigitada) {
         String query = "SELECT * FROM usuario WHERE email = ?";
         try {
@@ -45,7 +45,7 @@ public class UsuarioDAO {
         }
     }
 
-    // ---Criar Usuário (retorna boolean) ---
+    //criar usuario
     public boolean criarUsuario(Usuario u){
         String query = "INSERT INTO usuario(nome, email, senha) VALUES (?, ?, ?)";
         try{
@@ -65,7 +65,7 @@ public class UsuarioDAO {
         }
     }
 
-    // ---Listar Usuários---
+    //listar usuarios
     public ArrayList<Usuario> listarUsuarios(){
         String query = "SELECT id_usuario, nome, email FROM usuario";
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
@@ -87,7 +87,7 @@ public class UsuarioDAO {
         return lista;
     }
 
-    // ---Atualizar Usuário (retorna boolean) ---
+    // atualizar usuarios
     public boolean atualizarUsuario(Usuario u) {
         String query = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id_usuario = ?";
         try {
@@ -105,7 +105,7 @@ public class UsuarioDAO {
         }
     }
 
-    // ---Deletar Usuário (recebe int, retorna boolean) ---
+    //deletar usuarios
     public boolean deletarUsuario(int id){
         String query = "DELETE FROM usuario WHERE id_usuario = ?";
         try{
